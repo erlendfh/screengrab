@@ -1,0 +1,19 @@
+<!ENTITY screengrab.name "ScreenGrab!">
+<!ENTITY screengrab.copy "Copy...">
+<!ENTITY screengrab.save "Save...">
+<!ENTITY screengrab.preview "Preview...">
+<!ENTITY screengrab.crop "Crop...">
+<!ENTITY screengrab.resize "Resize...">
+<!ENTITY screengrab.page "Complete Page/Frame...">
+<!ENTITY screengrab.visible.portion.of.page "Visible portion...">
+<!ENTITY screengrab.browser.window "Window...">
+<!ENTITY screengrab.selection "Selection...">
+<!ENTITY screengrab.preference.panel.label "Screengrab! Settings">
+<!ENTITY screengrab.preference.page.capture.method "Preferred page capture method">
+<!ENTITY screengrab.preference.page.capture.java "Java (older, funkier)">
+<!ENTITY screengrab.preference.page.capture.gecko "Gecko Canvas (newer, faster)">
+<!ENTITY screengrab.preference.page.capture.gecko.description "Canvas is faster, leaner, newer and usually better. It will capture long pages, but won&apos;t get embedded objects (eg. swf).">
+<!ENTITY screengrab.preference.page.capture.java.description "Java is slower and funkier (and requires Java to be installed). It gets embedded objects, but won&apos;t grab really long pages and can&apos;t copy to the clipboard (yet).">
+<!ENTITY screengrab.preference.timestamp.in.filename "Include time stamp in filename">
+<!ENTITY screengrab.preference.timestamp.in.filename.description "Enabling this will append a timestamp to all files saved. This can be useful for unique identification.">
+<!ENTITY screengrab.preference.image.format "Image format">

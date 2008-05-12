@@ -1,0 +1,19 @@
+<!ENTITY screengrab.name "ScreenGrab!">
+<!ENTITY screengrab.copy "Kopírovať...">
+<!ENTITY screengrab.save "Uložiť...">
+<!ENTITY screengrab.preview "Ukážka...">
+<!ENTITY screengrab.crop "Orezať...">
+<!ENTITY screengrab.resize "Zmeniť veľkosť...">
+<!ENTITY screengrab.page "Celá stránka/Rámec...">
+<!ENTITY screengrab.visible.portion.of.page "Viditeľná časť...">
+<!ENTITY screengrab.browser.window "Okno...">
+<!ENTITY screengrab.selection "Výber...">
+<!ENTITY screengrab.preference.panel.label "Nastavenie ScreenGrab!">
+<!ENTITY screengrab.preference.page.capture.method "Uprednostňovaný spôsob snímania">
+<!ENTITY screengrab.preference.page.capture.java "Java (starší, funkčnejší)">
+<!ENTITY screengrab.preference.page.capture.gecko "Gecko Canvas (novší, rýchlejší)">
+<!ENTITY screengrab.preference.page.capture.gecko.description "Canvas je rýchlejší, novší a zvyčajne lepší. Zosníma dlhé stránky, ale nezíska vložené objekty (napr. SWF).">
+<!ENTITY screengrab.preference.page.capture.java.description "Java je pomalšia a funkčnejšia (a vyžaduje nainštalovanú Javu). Získa aj vložené objekty, ale nesníma naozaj dlhé stránky a nedokáže kopírovať do schránky (zatiaľ).">
+<!ENTITY screengrab.preference.timestamp.in.filename "Vložiť do názvu súboru dátumovú pečiatku">
+<!ENTITY screengrab.preference.timestamp.in.filename.description "Ak je povolené, do názvu ukladaných súborov bude pridaná dátumová pečiatka. Užitočné kvôli jedinečnej identifikácii.">
+<!ENTITY screengrab.preference.image.format "Formát obrázka">

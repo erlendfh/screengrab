@@ -1,0 +1,19 @@
+<!ENTITY screengrab.name "ScreenGrab!">
+<!ENTITY screengrab.copy "Скопіювати...">
+<!ENTITY screengrab.save "Зберегти...">
+<!ENTITY screengrab.preview "Перегляд...">
+<!ENTITY screengrab.crop "Вирізати...">
+<!ENTITY screengrab.resize "Змінити розмір...">
+<!ENTITY screengrab.page "Цілу сторінку/фрейм...">
+<!ENTITY screengrab.visible.portion.of.page "Видима частина...">
+<!ENTITY screengrab.browser.window "Вікно...">
+<!ENTITY screengrab.selection "Виділення...">
+<!ENTITY screengrab.preference.panel.label "Налаштування Screengrab!">
+<!ENTITY screengrab.preference.page.capture.method "Вид збереження сторінки за замовчуванням">
+<!ENTITY screengrab.preference.page.capture.java "Java (старший, повільний)">
+<!ENTITY screengrab.preference.page.capture.gecko "Gecko Canvas (новий, швидший)">
+<!ENTITY screengrab.preference.page.capture.gecko.description "Canvas швидший, економніший, новий і зручний у користуванні. Робить знімок з як завгодно довгих сторінок, але без вбудованих об&apos;єктів (напр. Flash).">
+<!ENTITY screengrab.preference.page.capture.java.description "Java повільніший і вимагає наявність встановленої Java. Включає вбудовані об&apos;єкти, але існують проблеми з довгими сторінками і відсутня можливість копіюванням в буфер обміну(поки що).">
+<!ENTITY screengrab.preference.timestamp.in.filename "Додавати поточний час до імені файла">
+<!ENTITY screengrab.preference.timestamp.in.filename.description "Додаваня поточного часу до імені кожного файла. Корисно для унікальності.">
+<!ENTITY screengrab.preference.image.format "Формат картинки">

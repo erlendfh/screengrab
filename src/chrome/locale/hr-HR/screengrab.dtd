@@ -1,0 +1,19 @@
+<!ENTITY screengrab.name "ScreenGrab!">
+<!ENTITY screengrab.copy "Kopiraj...">
+<!ENTITY screengrab.save "Spremi...">
+<!ENTITY screengrab.preview "Pogledaj...">
+<!ENTITY screengrab.crop "Odsijeci...">
+<!ENTITY screengrab.resize "Promijeni veličinu...">
+<!ENTITY screengrab.page "Cijela stranica/Okvir...">
+<!ENTITY screengrab.visible.portion.of.page "Vidljivi dio...">
+<!ENTITY screengrab.browser.window "Prozor...">
+<!ENTITY screengrab.selection "Odabrano...">
+<!ENTITY screengrab.preference.panel.label "Screengrab! Postavke">
+<!ENTITY screengrab.preference.page.capture.method "Preferirana metoda hvatanja stranice">
+<!ENTITY screengrab.preference.page.capture.java "Java (starije, više funky)">
+<!ENTITY screengrab.preference.page.capture.gecko "Gecko platno (novije, brže)">
+<!ENTITY screengrab.preference.page.capture.gecko.description "Platno je brže, slabije, novije i uobičajeno bolje. Uhvatit će duže stranice, ali neće uhvatiti ugrađene stvari (npr. swf)">
+<!ENTITY screengrab.preference.page.capture.java.description "Java je sporija i više funky (i zahtjeva instaliranu Javu). Hvata ugrađene stvari, ali neće zapravo uhvatiti duge stranice i ne može kopirati u međuspremnik (zasad).">
+<!ENTITY screengrab.preference.timestamp.in.filename "Uključi vremensku oznaku i ime datoteke">
+<!ENTITY screengrab.preference.timestamp.in.filename.description "Omogučivši ovo će se svim spremljenim datotekama na kraj dodati vremenska oznaka. Ovo može biti korisno kod jedinstvene identifikacije.">
+<!ENTITY screengrab.preference.image.format "Oblik slike">

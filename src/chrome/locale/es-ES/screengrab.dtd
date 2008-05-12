@@ -1,0 +1,19 @@
+<!ENTITY screengrab.name "ScreenGrab!">
+<!ENTITY screengrab.copy "Copiar...">
+<!ENTITY screengrab.save "Guardar...">
+<!ENTITY screengrab.preview "Vista previa...">
+<!ENTITY screengrab.crop "Cortar...">
+<!ENTITY screengrab.resize "Redimensionar...">
+<!ENTITY screengrab.page "Página/Marco completo...">
+<!ENTITY screengrab.visible.portion.of.page "Porción visible...">
+<!ENTITY screengrab.browser.window "Ventana...">
+<!ENTITY screengrab.selection "Selección...">
+<!ENTITY screengrab.preference.panel.label "Screengrab! - Opciones">
+<!ENTITY screengrab.preference.page.capture.method "Método preferido de captura de página">
+<!ENTITY screengrab.preference.page.capture.java "Java (antiguo, pesado)">
+<!ENTITY screengrab.preference.page.capture.gecko "Gecko Canvas (nuevo, más rápido)">
+<!ENTITY screengrab.preference.page.capture.gecko.description "Canvas es más rápido, más nuevo y normalmente mejor. Captura las páginas completas, pero no los objetos embebidos (como swf).">
+<!ENTITY screengrab.preference.page.capture.java.description "Java es más lento y más pesado (y requiere tener Java instalado). Recoge también los objetos embebidos, pero no captura las páginas muy grandes y no puede copiar al portapapeles (aún).">
+<!ENTITY screengrab.preference.timestamp.in.filename "Incluir una marca horaria en el nombre del archivo">
+<!ENTITY screengrab.preference.timestamp.in.filename.description "Si habilita esta opción, se añadirá un marca temporal a todos los archivos guardados. Esto puede ser útil para una mejor identificación.">
+<!ENTITY screengrab.preference.image.format "Formato de la imagen">

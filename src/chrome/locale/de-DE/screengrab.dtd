@@ -1,0 +1,19 @@
+<!ENTITY screengrab.name "ScreenGrab!">
+<!ENTITY screengrab.copy "In die Zwischenablage kopieren...">
+<!ENTITY screengrab.save "Als Datei speichern...">
+<!ENTITY screengrab.preview "Vorschau...">
+<!ENTITY screengrab.crop "Zuschneiden...">
+<!ENTITY screengrab.resize "Größe ändern...">
+<!ENTITY screengrab.page "Gesamte Seite oder Frame...">
+<!ENTITY screengrab.visible.portion.of.page "Sichtbarer Bereich...">
+<!ENTITY screengrab.browser.window "Gesamtes Fenster...">
+<!ENTITY screengrab.selection "Auswählbarer Bereich...">
+<!ENTITY screengrab.preference.panel.label "ScreenGrab! - Einstellungen">
+<!ENTITY screengrab.preference.page.capture.method "Bevorzugte Methode auswählen:">
+<!ENTITY screengrab.preference.page.capture.java "Java-Methode verwenden">
+<!ENTITY screengrab.preference.page.capture.gecko "Canvas-Feature verwenden">
+<!ENTITY screengrab.preference.page.capture.gecko.description "Canvas ist schneller, aktueller und damit im Allgemeinen besser geeignet. Es können lange Webseiten aber keine darin eingebetteten Objekte (z.B. swf) erfasst werden">
+<!ENTITY screengrab.preference.page.capture.java.description "Die Java-Methode ist langsamer und verlangt ein installiertes Java. Eingebettete Objekte aber keine langen Webseiten können erfasst werden und das Kopieren in die Zwischenablage ist nicht möglich">
+<!ENTITY screengrab.preference.timestamp.in.filename "Zeitstempel im Dateinamen verwenden">
+<!ENTITY screengrab.preference.timestamp.in.filename.description "Aktiviert wird den zu speichernden Dateien ein Zeitstempel hinzugefügt um einen eindeutigen Dateinamen zu erzeugen">
+<!ENTITY screengrab.preference.image.format "Dateiformat">

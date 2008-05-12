@@ -1,0 +1,19 @@
+<!ENTITY screengrab.name "ScreenGrab!">
+<!ENTITY screengrab.copy "Kopiëren...">
+<!ENTITY screengrab.save "Opslaan...">
+<!ENTITY screengrab.preview "Voorbeeld...">
+<!ENTITY screengrab.crop "Bijsnijden...">
+<!ENTITY screengrab.resize "Formaat wijzigen...">
+<!ENTITY screengrab.page "Volledige pagina/frame...">
+<!ENTITY screengrab.visible.portion.of.page "Zichtbaar gedeelte...">
+<!ENTITY screengrab.browser.window "Venster...">
+<!ENTITY screengrab.selection "Selectie...">
+<!ENTITY screengrab.preference.panel.label "ScreenGrab! instellingen">
+<!ENTITY screengrab.preference.page.capture.method "Voorkeursmethode voor paginacapture">
+<!ENTITY screengrab.preference.page.capture.java "Java (ouder, wat stoffig)">
+<!ENTITY screengrab.preference.page.capture.gecko "Gecko Canvas (nieuwer, sneller)">
+<!ENTITY screengrab.preference.page.capture.gecko.description "Canvas is sneller, slimmer, nieuwer en meestal beter. U kunt lange pagina&apos;s kopiëren, maar neemt ingebedde objecten (zoals swf) niet mee.">
+<!ENTITY screengrab.preference.page.capture.java.description "Java is langzamer en stoffiger (en Java moet zijn geïnstalleerd). Ingebedde objecten worden meegenomen, maar echt lange pagina&apos;s worden niet gekopieerd en het kan ook (nog) niet naar het klembord kopiëren.">
+<!ENTITY screengrab.preference.timestamp.in.filename "Tijdstip in bestandsnaam opnemen">
+<!ENTITY screengrab.preference.timestamp.in.filename.description "Door het inschakelen hiervan wordt het tijdstip in alle opgeslagen bestanden opgenomen. Dit kan handig zijn voor unieke identificatie.">
+<!ENTITY screengrab.preference.image.format "Afbeeldingsopmaak">

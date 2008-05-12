@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<project name="screengrab" default="launch-ff-in-console-mode" basedir=".">
+    <description>
+    	screengrab build file
+    </description>
+	
+	<property name="src" location="src"/>
+	<property name="build" location="build"/>
+	<property name="dist"  location="dist"/>
+	
+	<xmlproperty file="src/install.rdf"/>
+	
+	<!-- the name will be used to make the jars and should be the name used in the chrome.manifest file -->
+	<property name="name" value="${ant.project.name}"/>
+	<property name="extension-id" value="${RDF.Description.em:id}"/>
+	<property name="version" value="${RDF.Description.em:version}"/>
+	
+	<!-- Set this property to your Firefox profile directory -->
+	<!--property name="ff-profile-dir" location="C:/documents and settings/602527127/Application Data/Mozilla/Firefox/Profiles/nw7h6vit.default" /-->
+    <!--property name="ff-app" location="C:/Program Files/Mozilla Firefox 3 Beta 2/firefox.exe" /-->
+	<property name="ff-profile-dir" location="/Users/andy/Library/Application Support/Firefox/Profiles/8q81q1ap.default" />
+	<property name="ff-app" location="/Applications/Firefox.app/Contents/MacOS/firefox" />
+	
+	<property name="extension-dir" location="${ff-profile-dir}/extensions" />
+  	
+	<target name="launch-ff-in-console-mode">
+		<exec executable="${ff-app}">
+			<arg value="-console"/>
+		</exec>
+	</target>
+	
+  	<!-- targets used for testing and development -->
+  	<target name="create-pointer-file">
+  		<echo file="${extension-dir}/${extension-id}" message="${src}"/>
+  	</target>
+  
+  	<target name="delete-pointer-file">
+  		<delete file="${extension-dir}/${extension-id}" />
+  	</target>
+
+  	<!-- targets used for creating a distribution -->
+  	<target name="build-chrome-jar" depends="clean" description="create the inner chrome jar">
+  		<mkdir dir="${build}" />
+  		<mkdir dir="${build}/chrome"/>
+  		<zip destfile="${build}/chrome/${name}.jar">
+  			<zipfileset dir="${src}/chrome" includes="**/*" />
+  		</zip>
+  		<copy todir="${build}/defaults">
+  			<fileset dir="${src}/defaults" />
+  		</copy>
+        <copy todir="${build}/components">
+            <fileset dir="${src}/components" />
+        </copy>
+  		<copy file="${src}/install.rdf" toDir="${build}"/>
+  		<copy file="${src}/chrome.manifest"  toFile="${build}/chrome.manifest" />
+  		
+  		<!-- Need to include the space because "chrome/" recursively matches (replace is stupid). -->
+  		<replace file="${build}/chrome.manifest" token=" chrome/" value=" jar:chrome/${name}.jar!/" />
+  	</target>
+
+  	<target name="make-xpi-dist" depends="build-chrome-jar" description="generate the distribution" >
+    	<!-- Create the distribution directory -->
+    	<mkdir dir="${dist}"/>
+  		<zip destfile="${dist}/${name}_v${version}.xpi">
+            <zipfileset dir="${build}/components" includes="**/*" prefix="components"/>
+	  		<zipfileset dir="${build}/chrome" includes="${name}.jar" prefix="chrome"/>
+	  		<zipfileset dir="${build}/defaults" includes="**/*" prefix="defaults"/>
+	  		<zipfileset dir="${build}" includes="install.rdf"/>
+	  		<zipfileset dir="${build}" includes="chrome.manifest"/>
+  		</zip>
+  	</target>
+
+  	<target name="clean" description="clean up" >
+	    <!-- Delete the ${build} and ${dist} directory trees -->
+    	<delete dir="${build}"/>
+	    <delete dir="${dist}"/>
+	</target>
+</project>

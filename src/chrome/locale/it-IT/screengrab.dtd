@@ -1,0 +1,19 @@
+<!ENTITY screengrab.name "Screen grab!">
+<!ENTITY screengrab.copy "Copia...">
+<!ENTITY screengrab.save "Salva...">
+<!ENTITY screengrab.preview "Anteprima...">
+<!ENTITY screengrab.crop "Ritaglia...">
+<!ENTITY screengrab.resize "Ridimensiona...">
+<!ENTITY screengrab.page "Pagina/riquadro completo...">
+<!ENTITY screengrab.visible.portion.of.page "Porzione visibile...">
+<!ENTITY screengrab.browser.window "Finestra...">
+<!ENTITY screengrab.selection "Selezione...">
+<!ENTITY screengrab.preference.panel.label "Impostazioni di Screen grab!">
+<!ENTITY screengrab.preference.page.capture.method "Metodo di cattura preferito:">
+<!ENTITY screengrab.preference.page.capture.java "Java (metodo vecchio, più lento)">
+<!ENTITY screengrab.preference.page.capture.gecko "Gecko Canvas (metodo nuovo, più veloce)">
+<!ENTITY screengrab.preference.page.capture.gecko.description "Canvas è il metodo nuovo, più veloce e solitamente migliore. Permette di catturare pagine lunghe, ma non oggetti incorporati (es: swf)">
+<!ENTITY screengrab.preference.page.capture.java.description "Java è il metodo vecchio ed è più lento (richiede che Java sia installata). Permette di catturare oggetti incorporati, ma non effettivamente pagine lunghe e non permette di copiare negli appunti (non ancora)">
+<!ENTITY screengrab.preference.timestamp.in.filename "Includi data/ora nel file">
+<!ENTITY screengrab.preference.timestamp.in.filename.description "Attivando questa opzione data/ora verranno inserite alla fine di tutti i file salvati (utile per un&apos;identificazione unica)">
+<!ENTITY screengrab.preference.image.format "Formato dell&apos;immagine:">

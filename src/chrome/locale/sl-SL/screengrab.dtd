@@ -1,7 +1,19 @@
-<!ENTITY screengrab.about.title "Screen grab! - O razširitvi">
-<!ENTITY screengrab.createdby.value "Avtor:">
-<!ENTITY screengrab.homepage.value "Domača stran:">
-<!ENTITY screengrab.closebutton.label "Zapri">
-<!ENTITY screengrab.savedoc.label "Shrani dokument kot sliko ...">
-<!ENTITY screengrab.saveviewport.label "Shrani vidni del strani kot sliko ...">
-<!ENTITY screengrab.savewindow.label "Shrani okno kot sliko ...">
+<!ENTITY screengrab.name "ScreenGrab!">
+<!ENTITY screengrab.copy "Kopiraj...">
+<!ENTITY screengrab.save "Shrani...">
+<!ENTITY screengrab.preview "Predogled...">
+<!ENTITY screengrab.crop "Obreži...">
+<!ENTITY screengrab.resize "Spremeni velikost...">
+<!ENTITY screengrab.page "Celotna stran/Okvir...">
+<!ENTITY screengrab.visible.portion.of.page "Vidna površina...">
+<!ENTITY screengrab.browser.window "Okno...">
+<!ENTITY screengrab.selection "Izbira...">
+<!ENTITY screengrab.preference.panel.label "Nastavitve Screengrab!">
+<!ENTITY screengrab.preference.page.capture.method "Privzeta metoda zajema strani">
+<!ENTITY screengrab.preference.page.capture.java "Java (starejša, več funkcij)">
+<!ENTITY screengrab.preference.page.capture.gecko "Gecko Canvas (novejša, hitreje)">
+<!ENTITY screengrab.preference.page.capture.gecko.description "Canvas je hitrejši, zmogljivejši, novejši in ponavadi boljši. Zna zajemati velike strani, ne more pa zajeti vključenih objekotv (swf).">
+<!ENTITY screengrab.preference.page.capture.java.description "Java je počasnejša in ima več funkcij (in zahteva namestitev Jave). Zajame tudi vključene objekte (swf), ne deluje pa z res dolgimi stranmi in slike ne more prenesti v odložišče (še).">
+<!ENTITY screengrab.preference.timestamp.in.filename "V ime datoteke vključi čas in datum">
+<!ENTITY screengrab.preference.timestamp.in.filename.description "Omogočite to da se bo v ime datoteke vključila tudi oznaka časa in datuma (timestamp). To je uporabno za enoznačno identifikacijo datotek.">
+<!ENTITY screengrab.preference.image.format "Oblika slike">

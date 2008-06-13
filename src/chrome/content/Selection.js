@@ -26,12 +26,12 @@ SGSelection = {
     TOOL_TEXT : "Grab/Cancel",
     oldText : null,
     drawing : false,
+	browser : null,
     
-    toggleDraw : function(toClipboard) {
+    toggleDraw : function() {
         if (this.drawing) {
             this.disableDrawAndGrabIfRequired();
         } else {
-            this.toClipboard = toClipboard;
             this.enableDraw();
         }
     },
@@ -67,7 +67,7 @@ SGSelection = {
           js.setAttribute("id", "screengrab_js");
           js.setAttribute("language", "JavaScript");
           js.setAttribute("type", "text/javascript");
-          js.setAttribute("src", "chrome://screengrab/content/selectionBox.js");
+          js.setAttribute("src", "chrome://screengrab/content/injected/selectionBox.js");
     
           pageHead.appendChild(js);
         }
@@ -102,36 +102,36 @@ SGSelection = {
     },
     
     disableDrawAndGrabIfRequired : function(event) {
-        window._content.document.removeEventListener("mouseup", SGSelectionOnMouseUpHandlerThatHasToExistForSomeReason, true);
-        var winCon = window._content;
-    	var dimBox = null;
-    	// create a box to hold the dimensions of the box
-    	var box = winCon.document.getElementById(this.BOX_DIV);
-    	if (box != null) {
-    	    dimBox = new SGDimensions.Box(box.offsetLeft, box.offsetTop, box.clientWidth, box.clientHeight);
-    	}
-    	// remove the box div
-        var body = winCon.document.getElementsByTagName("html")[0];
-        var newDiv = winCon.document.getElementById(this.DRAW_DIV);
-        body.removeChild(newDiv);
-    	
-    	// restore the styling to the screengrab bar
-    	var screengrabBar = window.document.getElementById("screengrab_bar");
-    	if (screengrabBar != null) {
-    		screengrabBar.style.background = this.IDLE_IMAGE;
-    		screengrabBar.tooltiptext = this.oldText;
-    	}
-    	
-    	this.drawing = false;
-    	
-    	// take the shot (hopefully everything is clean now)
-    	if (box != null && event != null) {
-    	    if (this.toClipboard) {
-    	        Screengrab.copyDocumentPortion(dimBox.getX(), dimBox.getY(), dimBox.getWidth(), dimBox.getHeight());
-    	    } else {
-        		Screengrab.grabDocumentPortion(dimBox.getX(), dimBox.getY(), dimBox.getWidth(), dimBox.getHeight());
-    	    }
-    	}
+		try {
+	        window._content.document.removeEventListener("mouseup", SGSelectionOnMouseUpHandlerThatHasToExistForSomeReason, true);
+	        var winCon = window._content;
+	    	var dimBox = null;
+	    	// create a box to hold the dimensions of the box
+	    	var box = winCon.document.getElementById(this.BOX_DIV);
+	    	if (box != null) {
+				dimBox = new screengrab.Box(box.offsetLeft, box.offsetTop, box.clientWidth, box.clientHeight)
+	    	}
+	    	// remove the box div
+	        var body = winCon.document.getElementsByTagName("html")[0];
+	        var newDiv = winCon.document.getElementById(this.DRAW_DIV);
+	        body.removeChild(newDiv);
+	    	
+	    	// restore the styling to the screengrab bar
+	    	var screengrabBar = window.document.getElementById("screengrab_bar");
+	    	if (screengrabBar != null) {
+	    		screengrabBar.style.background = this.IDLE_IMAGE;
+	    		screengrabBar.tooltiptext = this.oldText;
+	    	}
+	    	
+	    	this.drawing = false;
+	    	
+	    	// take the shot (hopefully everything is clean now)
+	    	if (box != null && event != null) {
+                SGSelection.callback(dimBox);
+	    	}
+		} catch (error) {
+			screengrab.error(error);
+		}
     }
 }
 

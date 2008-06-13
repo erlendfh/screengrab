@@ -16,10 +16,10 @@
 	<property name="version" value="${RDF.Description.em:version}"/>
 	
 	<!-- Set this property to your Firefox profile directory -->
-	<!--property name="ff-profile-dir" location="C:/documents and settings/602527127/Application Data/Mozilla/Firefox/Profiles/nw7h6vit.default" /-->
-    <!--property name="ff-app" location="C:/Program Files/Mozilla Firefox 3 Beta 2/firefox.exe" /-->
-	<property name="ff-profile-dir" location="/Users/andy/Library/Application Support/Firefox/Profiles/8q81q1ap.default" />
-	<property name="ff-app" location="/Applications/Firefox.app/Contents/MacOS/firefox" />
+	<property name="ff-profile-dir" location="C:/documents and settings/602527127/Application Data/Mozilla/Firefox/Profiles/nw7h6vit.default" />
+    <property name="ff-app" location="C:/Program Files/Mozilla Firefox 3 Beta 3/firefox.exe" />
+	<!--property name="ff-profile-dir" location="/Users/andy/Library/Application Support/Firefox/Profiles/8q81q1ap.default" /-->
+	<!--property name="ff-app" location="/Applications/Firefox.app/Contents/MacOS/firefox" /-->
 	
 	<property name="extension-dir" location="${ff-profile-dir}/extensions" />
   	

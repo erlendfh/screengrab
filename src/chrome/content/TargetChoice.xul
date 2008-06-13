@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE dialog [
+    <!ENTITY % globalDTD SYSTEM "chrome://global/locale/global.dtd">
+    %globalDTD;
+    <!ENTITY % screengrabDTD SYSTEM "chrome://screengrab/locale/screengrab.dtd">
+    %screengrabDTD;
+    <!ENTITY % htmlDTD PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+    %htmlDTD;
+]>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="style.css" type="text/css"?>
+<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    title="Select what to grab..."
+    buttons="accept"
+    id="sg.TargetChoice">
+
+    <keyset>
+        <key keycode="VK_ESCAPE" oncommand="self.close();"/>
+    </keyset>
+
+    <dialogheader id="logo" title="Screengrab!" description="Choose what to grab" orient="vertical" style="font-size: smaller;"/>
+    <vbox>
+        <button label="Page/Frame" onclick="window.arguments[0].choices.target = 'FrameTarget'; self.close();"/>
+        <button label="Visible in browser" onclick="window.arguments[0].choices.target = 'VisibleTarget'; self.close();"/>
+        <button label="Drag selection" onclick="window.arguments[0].choices.target = 'SelectionTarget'; self.close();"/>
+        <button label="Element selection" onclick="window.arguments[0].choices.target = 'ElementTarget'; self.close();"/>
+        <button label="Complete browser" onclick="window.arguments[0].choices.target = 'WindowTarget'; window.arguments[0].choices.capture = 'CaptureWindow'; self.close();"/>
+    </vbox>
+</dialog>

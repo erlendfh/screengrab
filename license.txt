@@ -1,0 +1,3 @@
+Screengrab! and all of my code is licensed under the GPL.
+Screengrab! incorporates log4js which is licensed under the Apache license.
+Screengrab! also incorporates Class.js and webtoolkit.base64.js which were found online and assumed to be in the public domain.

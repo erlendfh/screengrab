@@ -8,6 +8,7 @@
 <!ENTITY screengrab.visible.portion.of.page "Visible portion...">
 <!ENTITY screengrab.browser.window "Window...">
 <!ENTITY screengrab.selection "Selection...">
+<!ENTITY screengrab.element "Element...">
 <!ENTITY screengrab.preference.panel.label "Screengrab! Settings">
 <!ENTITY screengrab.preference.page.capture.method "Preferred page capture method">
 <!ENTITY screengrab.preference.page.capture.java "Java (older, funkier)">

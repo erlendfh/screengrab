@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE window [
+    <!ENTITY % globalDTD SYSTEM "chrome://global/locale/global.dtd">
+    %globalDTD;
+    <!ENTITY % screengrabDTD SYSTEM "chrome://screengrab/locale/screengrab.dtd">
+    %screengrabDTD;
+    <!ENTITY % htmlDTD PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+    %htmlDTD;
+]>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="style.css" type="text/css"?>
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    title="Upload to ScrnShots..."
+    id="ScrnShotsUpload"
+    onload="fillParams()">
+
+    <script type="application/x-javascript">
+        function fillParams() {
+            var shotData = window.arguments[0].shotData
+            idGet("fileName").value = shotData.fileName;
+            idGet("description").value = shotData.description;
+            idGet("sourceUri").value = shotData.sourceUri;
+            idGet("tags").value = shotData.tags;
+        }
+        function doTidyUp() {
+            var shotData = window.arguments[0].shotData;
+            shotData.description = idGet("description").value;
+            shotData.fileName = idGet("fileName").value;
+            shotData.sourceUri = idGet("sourceUri").value;
+            shotData.tags = idGet("tags").value;
+            window.close();
+        }
+        function idGet(name) {
+            return document.getElementById(name);
+        }
+    </script>
+    <keyset>
+        <key keycode="VK_ESCAPE" oncommand="self.close();"/>
+    </keyset>
+
+    <dialogheader id="logo" title="Screengrab! - ScrnShots upload" description="Upload to ScrnShots" orient="vertical" style="font-size: smaller;"/>
+    <vbox>
+        <label control="description" value="Description:"/>
+        <textbox id="description" value=""/>
+        <label control="tags" value="Tags:"/>
+        <textbox id="tags" value=""/>
+        <label control="fileName" value="File name:"/>
+        <textbox id="fileName" value=""/>
+        <label control="sourceUri" value="Source url:"/>
+        <textbox id="sourceUri" value=""/>
+        <button label="Send" oncommand="doTidyUp()" />
+    </vbox>
+</window>

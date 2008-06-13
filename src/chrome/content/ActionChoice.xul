@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE dialog [
+    <!ENTITY % globalDTD SYSTEM "chrome://global/locale/global.dtd">
+    %globalDTD;
+    <!ENTITY % screengrabDTD SYSTEM "chrome://screengrab/locale/screengrab.dtd">
+    %screengrabDTD;
+    <!ENTITY % htmlDTD PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+    %htmlDTD;
+]>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="style.css" type="text/css"?>
+<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    title="Choose where to put it..."
+    id="sg.TargetChoice">
+
+    <keyset>
+        <key keycode="VK_ESCAPE" oncommand="self.close();"/>
+    </keyset>
+
+    <dialogheader id="logo" title="Screengrab!" description="Choose where to put it..." orient="vertical" style="font-size: smaller;"/>
+    <vbox>
+        <button label="Save to file..." onclick="window.arguments[0].choices.action = 'SaveAction'; self.close();"/>
+        <button label="Copy to clipboard" onclick="window.arguments[0].choices.action = 'CopyAction'; self.close();"/>
+        <button label="Upload to ScrnShots..." onclick="window.arguments[0].choices.action = 'UploadScrnshotsAction'; self.close();"/>
+    </vbox>
+</dialog>

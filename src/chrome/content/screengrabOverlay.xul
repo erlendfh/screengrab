@@ -5,15 +5,24 @@
 <overlay id="screengrabOverlay" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
 	<script type="application/x-javascript" src="chrome://global/content/nsUserSettings.js" />
-	
-	<!-- screenGrab JS import -->
-	<script type="application/x-javascript" src="chrome://screengrab/content/Includes.js" />
-	<script type="application/x-javascript" src="chrome://screengrab/content/Dimensions.js" />
-	<script type="application/x-javascript" src="chrome://screengrab/content/NsUtils.js" />
-	<script type="application/x-javascript" src="chrome://screengrab/content/JavaGrab.js" />
-	<script type="application/x-javascript" src="chrome://screengrab/content/NsGrab.js" />
-	<script type="application/x-javascript" src="chrome://screengrab/content/Screengrab.js" />
-	<script type="application/x-javascript" src="chrome://screengrab/content/Selection.js" />
+	<script type="application/x-javascript" src="chrome://screengrab/content/Header.js" />
+    <script type="application/x-javascript" src="chrome://screengrab/content/Box.js" />
+	<script type="application/x-javascript" src="chrome://screengrab/content/Prefs.js" />
+	<script type="application/x-javascript" src="chrome://screengrab/content/Log4js.js" />
+	<script type="application/x-javascript" src="chrome://screengrab/content/UndoSet.js" />
+    <script type="application/x-javascript" src="chrome://screengrab/content/File.js" />
+    <script type="application/x-javascript" src="chrome://screengrab/content/Browser.js" />
+    <script type="application/x-javascript" src="chrome://screengrab/content/Document.js" />
+    <script type="application/x-javascript" src="chrome://screengrab/content/Highlighter.js" />
+    <script type="application/x-javascript" src="chrome://screengrab/content/Clipboard.js" />
+    <script type="application/x-javascript" src="chrome://screengrab/content/EmbeddedCapture.js" />
+    <script type="application/x-javascript" src="chrome://screengrab/content/Selection.js" />
+    <script type="application/x-javascript" src="chrome://screengrab/content/Target.js" />
+    <script type="application/x-javascript" src="chrome://screengrab/content/Capture.js" />
+    <script type="application/x-javascript" src="chrome://screengrab/content/ScrnShots.js" />
+    <script type="application/x-javascript" src="chrome://screengrab/content/Action.js" />
+    <script type="application/x-javascript" src="chrome://screengrab/content/Java.js" />
+    <script type="application/x-javascript" src="chrome://screengrab/content/Grab.js" />
 	
 	<!-- stringbundle to localize strings in .js file -->
 	<!-- many thanks to Jean-Bernard Marcon for all the help -->
@@ -29,25 +38,31 @@
 	        	<menu id="screengrab-save" label="&screengrab.save;">
 	        		<menupopup>
 			            <menuitem id="pop-grabFrame" label="&screengrab.page;" 
-			                oncommand="Screengrab.grabCompleteDocument();"/>
+			                oncommand="sg.Grab(new sg.FrameTarget(), sg.CaptureViewPort, new sg.SaveAction());"/>
 			            <menuitem id="pop-grabViewPort" label="&screengrab.visible.portion.of.page;" 
-			                oncommand="Screengrab.grabVisibleDocument();"/>
-			            <!--menuitem id="pop-grabBrowser" label="&screengrab.browser.window;" 
-			                oncommand="Screengrab.grabBrowserWindow();"/-->
-		                <menuitem id="pop-grabBrowser" label="&screengrab.selection;" 
-			                oncommand="SGSelection.toggleDraw();"/>
+			                oncommand="sg.Grab(new sg.VisibleTarget(), sg.CaptureViewPort, new sg.SaveAction());"/>
+			            <menuitem id="pop-grabBrowser" label="&screengrab.selection;" 
+			                oncommand="sg.Grab(new sg.SelectionTarget(), sg.CaptureViewPort, new sg.SaveAction());"/>
+		                <menuitem id="pop-grabBrowser" label="&screengrab.element;" 
+			                oncommand="sg.Grab(new sg.ElementTarget(), sg.CaptureViewPort, new sg.SaveAction());"/>
+                        <menuitem id="pop-grabBrowser" label="&screengrab.browser.window;" 
+                            oncommand="sg.Grab(new sg.WindowTarget(), sg.CaptureWindow, new sg.SaveAction());"/>
+                        <menuitem id="pop-grabBrowser" label="&screengrab.browser.window;" 
+                            oncommand="sg.Grab(new sg.VisibleTarget(), sg.CaptureViewPort, new sg.UploadScrnshotsAction());"/>
 		            </menupopup>
 	            </menu>
 	            <menu id="screengrab-copy" label="&screengrab.copy;">
 	        		<menupopup>
 			            <menuitem id="pop-copyFrame" label="&screengrab.page;" 
-				                oncommand="Screengrab.copyCompleteDocument();"/>
+				                oncommand="sg.Grab(new sg.FrameTarget(), sg.CaptureViewPort, new sg.CopyAction());"/>
 			            <menuitem id="pop-copyViewPort" label="&screengrab.visible.portion.of.page;" 
-			                oncommand="Screengrab.copyVisibleDocument();"/>
-			            <!--menuitem id="pop-copyBrowserWindow" label="&screengrab.browser.window;" 
-			                oncommand="Screengrab.copyBrowserWindow();"/-->
-			            <menuitem id="pop-copyBrowserSelection" label="&screengrab.selection;" 
-			                oncommand="SGSelection.toggleDraw(true);"/>
+			                oncommand="sg.Grab(new sg.VisibleTarget(), sg.CaptureViewPort, new sg.CopyAction());"/>
+			            <menuitem id="pop-copyBrowser" label="&screengrab.selection;" 
+                            oncommand="sg.Grab(new sg.SelectionTarget(), sg.CaptureViewPort, new sg.CopyAction());"/>
+                        <menuitem id="pop-copyBrowser" label="&screengrab.element;" 
+                            oncommand="sg.Grab(new sg.ElementTarget(), sg.CaptureViewPort, new sg.CopyAction());"/>
+                        <menuitem id="pop-copyBrowser" label="&screengrab.browser.window;" 
+                            oncommand="sg.Grab(new sg.WindowTarget(), sg.CaptureWindow, new sg.CopyAction());"/>
 	        		</menupopup>
 	            </menu>
 	        </menupopup>
@@ -63,29 +78,15 @@
 					    persist="collapsed"
 					    tooltiptext="Screengrab!">
 			<menupopup orient="horizontal" position="before_start">
+                <menuitem id="pop-grabBrowser" label="Custom..." 
+                    oncommand="sg.StagedGrab2()"/>
+                <menuitem id="pop-grabBrowser" label="Screengrab!..." 
+                    oncommand="window.open('chrome://screengrab/content/Screengrab.xul', 'screengrab', 'chrome,centerscreen,resizable');"/>
 				<menu id="screengrab-save" label="&screengrab.save;" tooltip="&screengrab.save;">
 	        		<menupopup>
-			            <menuitem id="pop-grabFrame" label="&screengrab.page;" 
-			                oncommand="Screengrab.grabCompleteDocument();"/>
-			            <menuitem id="pop-grabViewPort" label="&screengrab.visible.portion.of.page;" 
-			                oncommand="Screengrab.grabVisibleDocument();"/>
-			            <!--menuitem id="pop-grabBrowser" label="&screengrab.browser.window;" 
-			                oncommand="Screengrab.grabBrowserWindow();"/-->
-		                <menuitem id="pop-grabBrowser" label="&screengrab.selection;" 
-			                oncommand="SGSelection.toggleDraw();"/>
+		                <menuitem id="pop-grabBrowser" label="Custom..." 
+		                    oncommand="window.open('chrome://screengrab/content/TargetChoice.xul', 'aboutMyExtension', 'chrome,centerscreen');"/>
 		            </menupopup>
-	            </menu>
-	            <menu id="screengrab-copy" label="&screengrab.copy;">
-	        		<menupopup>
-			            <menuitem id="pop-copyFrame" label="&screengrab.page;" 
-				                oncommand="Screengrab.copyCompleteDocument();"/>
-			            <menuitem id="pop-copyViewPort" label="&screengrab.visible.portion.of.page;" 
-			                oncommand="Screengrab.copyVisibleDocument();"/>
-			            <!--menuitem id="pop-copyBrowserWindow" label="&screengrab.browser.window;" 
-			                oncommand="Screengrab.copyBrowserWindow();"/-->
-			            <menuitem id="pop-copyBrowserSelection" label="&screengrab.selection;" 
-			                oncommand="SGSelection.toggleDraw(true);"/>
-	        		</menupopup>
 	            </menu>
 			</menupopup>
 		    <vbox flex="1">
@@ -95,6 +96,5 @@
 	    	</vbox>
 		</statusbarpanel>
 	</statusbar>
-	// end Status bar
 </overlay>
 

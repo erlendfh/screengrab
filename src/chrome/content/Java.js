@@ -30,7 +30,7 @@ screengrab.Java = {
 		        var id = "{02450954-cdd9-410f-b1da-db804e18c671}";
 		        var ext = Components.classes["@mozilla.org/extensions/manager;1"].getService(Components.interfaces.nsIExtensionManager).getInstallLocation(id).getItemLocation(id);
 				var file = new java.io.File(ext.path + "/components/" + jar).getAbsoluteFile();
-	            jarCl = new java.net.URLClassLoader(this.newArray("java.net.URL", file.toURL()));
+	            jarCl = java.net.URLClassLoader.newInstance(this.newArray("java.net.URL", file.toURL()));
 				this.clForJar[jar] = jarCl;
 			}
             var aClass = java.lang.Class.forName(className, true, jarCl);

@@ -6,10 +6,10 @@ screengrab.Browser = function(win) {
 	this.htmlWin = win.content.window;
 }
 screengrab.Browser.physicalDimensions = function() {
-	return new screengrab.Box(window.screenX + window.screen.availLeft,
-	                                 window.screenY + window.screen.availTop,
-									 window.outerWidth + window.screen.availLeft, 
-									 window.outerHeight + window.screen.availTop);
+	return new screengrab.Box(window.screenX,// + window.screen.availLeft,
+	                                 window.screenY,// + window.screen.availTop,
+									 window.outerWidth,// + window.screen.availLeft, 
+									 window.outerHeight);// + window.screen.availTop);
 }
 screengrab.Browser.viewportAbsoluteDimensions = function() {
 	var win = window.top.getBrowser().selectedBrowser;
@@ -81,8 +81,12 @@ screengrab.Browser.prototype = {
         return this.htmlDoc.body.clientWidth;
     },
 	
-    getDocumentHeight : function() {
-        return this.htmlDoc.documentElement.scrollHeight;
+	getDocumentHeight : function() {
+        if (this.htmlDoc.compatMode == "CSS1Compat") {
+            // standards mode
+	        return this.htmlDoc.documentElement.scrollHeight;
+        }
+        return this.htmlDoc.body.scrollHeight;
     },
     
     getDocumentWidth : function() {
@@ -94,8 +98,8 @@ screengrab.Browser.prototype = {
     },
 	
 	getCanvas: function() {
-//		return document.createElementNS("http://www.w3.org/1999/xhtml", "html:canvas");
-		return document.getElementById("screengrab_buffer_canvas");
+		return document.createElementNS("http://www.w3.org/1999/xhtml", "html:canvas");
+//		return document.getElementById("screengrab_buffer_canvas");
 	},
 	
 	getFilledCanvas: function(region) {

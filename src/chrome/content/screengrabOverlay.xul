@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <?xml-stylesheet href="chrome://screengrab/skin/screengrab.css" type="text/css"?>
+<?xml-stylesheet href="chrome://screengrab/skin/toolbar.css" type="text/css"?>
 <!DOCTYPE window SYSTEM "chrome://screengrab/locale/screengrab.dtd">
 
 <overlay id="screengrabOverlay" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
@@ -8,6 +9,7 @@
 	<script type="application/x-javascript" src="chrome://screengrab/content/Header.js" />
     <script type="application/x-javascript" src="chrome://screengrab/content/Box.js" />
 	<script type="application/x-javascript" src="chrome://screengrab/content/Prefs.js" />
+    <script type="application/x-javascript" src="chrome://screengrab/content/AddToToolbar.js" />
 	<script type="application/x-javascript" src="chrome://screengrab/content/Log4js.js" />
 	<script type="application/x-javascript" src="chrome://screengrab/content/UndoSet.js" />
     <script type="application/x-javascript" src="chrome://screengrab/content/File.js" />
@@ -29,6 +31,32 @@
 	<stringbundleset id="stringbundleset">
 	   <stringbundle id="screengrab-strings" src="chrome://screengrab/locale/screengrab.properties"/>
 	</stringbundleset>
+	
+	<toolbarpalette id="BrowserToolbarPalette">
+	    <toolbarbutton id="screengrab-toolbar-button"
+	                   class="toolbarbutton-1 chromeclass-toolbar-additional"
+                       oncommand="document.getElementById('screengrab-toolbar-button').open=true;"
+                       type="menu-button"
+	                   tooltiptext="Screengrab!"
+	                   label="Screengrab!">
+	        <menupopup id="screengrab-toolbar-menupopup">
+	            <menuitem id="pop-grabFrame" label="&screengrab.page;" 
+	                oncommand="sg.Grab(new sg.FrameTarget(), sg.CaptureViewPort, new sg.SaveAction());"/>
+	            <menuitem id="pop-grabViewPort" label="&screengrab.visible.portion.of.page;" 
+	                oncommand="sg.Grab(new sg.VisibleTarget(), sg.CaptureViewPort, new sg.SaveAction());"/>
+	            <menuitem id="pop-grabBrowser" label="&screengrab.selection;" 
+	                oncommand="sg.Grab(new sg.SelectionTarget(), sg.CaptureViewPort, new sg.SaveAction());"/>
+                <menuitem id="pop-grabBrowser" label="&screengrab.element;" 
+	                oncommand="sg.Grab(new sg.ElementTarget(), sg.CaptureViewPort, new sg.SaveAction());"/>
+                <menuitem id="pop-grabBrowser" label="&screengrab.browser.window;" 
+                    oncommand="sg.Grab(new sg.WindowTarget(), sg.CaptureWindow, new sg.SaveAction());"/>
+                <menuitem id="pop-grabBrowser" label="&screengrab.browser.window;" 
+                    oncommand="sg.Grab(new sg.VisibleTarget(), sg.CaptureViewPort, new sg.UploadScrnshotsAction());"/>
+	            <menuseparator/>
+	            <menuitem label="Preferences..." tooltiptext="Preferences..." oncommand="screengrab.prefs.openPrefs(); event.stopPropagation();"/>
+	      </menupopup>
+	    </toolbarbutton>
+	</toolbarpalette>
 	
 	<!-- Context menu additions -->
 	<popup id="contentAreaContextMenu">

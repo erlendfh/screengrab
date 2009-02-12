@@ -5,7 +5,6 @@
  
 <prefwindow id="scg-pref-window" 
 			title="Screengrab Options"
-			type="prefwindow"
 			xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
  
 	<prefpane id="scg-pref-pane" label="&screengrab.preference.panel.label;">	

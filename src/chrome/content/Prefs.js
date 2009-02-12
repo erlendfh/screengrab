@@ -35,6 +35,7 @@ screengrab.prefs = {
 	loggerPref : "loggerFilename",
 	showFileInDownloadsPref : "showFileInDownloads",
 	useBrowserDownloadDirPref : "useBrowserDownloadDir",
+	toolbarAddedOncePref : "toolbarAddedOnce",
 	
 	prefBranch : null,
 	
@@ -101,6 +102,14 @@ screengrab.prefs = {
 	useBrowserDownloadDir : function () {
 		return nsPreferences.getBoolPref(this.extensionPrefix + this.useBrowserDownloadDirPref);
 	},
+	
+	toolbarAddedOnce: function() {
+		return this.getBool(this.toolbarAddedOncePref);
+	},
+	
+	setToolbarAddedOnce: function() {
+        return nsPreferences.setBoolPref(this.extensionPrefix + this.toolbarAddedOncePref, true);
+    },
 	
 	refreshContextMenu : function() {
 		if (nsPreferences.getBoolPref(this.extensionPrefix + this.showInContextMenu)) {
@@ -198,5 +207,13 @@ screengrab.prefs = {
 			screengrab.prefs.refreshMenuChoices();
             screengrab.prefs.refreshShortcuts();
 		}, 100);
+	},
+	
+	instantApply: function() {
+		return nsPreferences.getBoolPref("browser.preferences.instantApply");
+	},
+	
+	openPrefs:function() {
+		window.openDialog("chrome://screengrab/content/preferences.xul", "screengrab-options-dialog", "toolbar,centerscreen,chrome,modal,resizable" + this.instantApply() ? ",dialog=no" : "");
 	}
 }

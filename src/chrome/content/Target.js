@@ -62,6 +62,18 @@ screengrab.VisibleTarget.prototype = {
     }
 }
 /**
+ * Target to capture the visible contents of a window
+ */
+screengrab.ScreenTarget = function() {}
+screengrab.ScreenTarget.superclass = screengrab.Target.prototype;
+screengrab.ScreenTarget.prototype = {
+    obtainDimensions : function(onObtained) {
+        this.contentBrowser = new screengrab.Browser(screengrab.Browser.contentWindow());
+        this.dimensions = new screengrab.Box(0, 0, screen.width, screen.height);
+        screengrab.Target.prototype.obtainDimensions.call(this, onObtained);
+    }
+}
+/**
  * Target to capture a user selected... selection of a window
  */
 screengrab.SelectionTarget = function() {

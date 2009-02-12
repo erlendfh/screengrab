@@ -1,0 +1,12 @@
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+/**
+ * This file is copyright Andy Mutton 2008 (andy@5263.org).
+ * It is licensed under the GPL3. More information can be found in the root folder in license.txt
+ */
+#screengrab-toolbar-button {
+  list-style-image: url("chrome://screengrab/skin/screengrab_24_icon.gif");
+}
+
+toolbar[iconsize="small"] #screengrab-toolbar-button {
+  list-style-image: url("chrome://screengrab/skin/screengrab_16_icon.gif");
+}

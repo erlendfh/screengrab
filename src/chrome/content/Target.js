@@ -62,7 +62,7 @@ screengrab.VisibleTarget.prototype = {
     }
 }
 /**
- * Target to capture the visible contents of a window
+ * Target to capture the entire screen
  */
 screengrab.ScreenTarget = function() {}
 screengrab.ScreenTarget.superclass = screengrab.Target.prototype;
@@ -73,8 +73,9 @@ screengrab.ScreenTarget.prototype = {
         screengrab.Target.prototype.obtainDimensions.call(this, onObtained);
     }
 }
+
 /**
- * Target to capture a user selected... selection of a window
+ * Target to capture a user specified selection of a window
  */
 screengrab.SelectionTarget = function() {
 	this.contentBrowser = new screengrab.Browser(screengrab.Browser.contentWindow());
@@ -84,7 +85,7 @@ screengrab.SelectionTarget.prototype = {
 	obtainDimensions : function(onObtained) {
 		var me = this;
 		var viewport = screengrab.Browser.contentWindow();
-        SGSelection.browser = new screengrab.Browser(screengrab.Browser.contentWindow());
+        SGSelection.browser = new screengrab.Browser(viewport);
 		SGSelection.callback = function(dimensions) {
 			me.dimensions = dimensions.offsetCopy(viewport.scrollX, viewport.scrollY);
             screengrab.Target.prototype.obtainDimensions.call(me, onObtained);

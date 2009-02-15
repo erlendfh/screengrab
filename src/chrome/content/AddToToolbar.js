@@ -3,7 +3,7 @@
  */
 screengrab.addToToolbar = function() {
     if (!screengrab.prefs.toolbarAddedOnce()) {
-//	    try {
+	    try {
 	        var firefoxnav = document.getElementById("nav-bar");
 	        screengrab.debug(firefoxnav);
 	        var curSet = firefoxnav.currentSet;
@@ -15,15 +15,15 @@ screengrab.addToToolbar = function() {
 	            firefoxnav.currentSet = set;
 	            document.persist("nav-bar", "currentset");
 	            // If you don't do the following call, funny things happen
-	            //try {
+	            try {
 	                BrowserToolboxCustomizeDone(true);
-//	            } catch (e) {
-//	                screengrab.error(e);
-//	            }
+	            } catch (e) {
+	                screengrab.error(e);
+	            }
 	        }
-//	    } catch(e) {
-//	        screengrab.error(e);
-//	    }
+	    } catch(e) {
+	        screengrab.error(e);
+	    }
 		screengrab.prefs.setToolbarAddedOnce();
 	}
 }

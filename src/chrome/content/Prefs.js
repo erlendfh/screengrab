@@ -24,7 +24,6 @@ screengrab.prefs = {
 	
 	extensionPrefix : "extensions.screengrab.",
 	
-    captureMethod : "captureMethod",
     includeTimeStampInFilename : "includeTimeStampInFilename",
     imageFormat : "imageFormat",
 	imageQuality : "imageQuality",
@@ -46,10 +45,6 @@ screengrab.prefs = {
 	getInt: function(pref) {
         return nsPreferences.getBoolPref(this.extensionPrefix + pref);
     },
-	
-	useJava : function() {
-		return nsPreferences.getIntPref(this.extensionPrefix + this.captureMethod) == 0;
-	},
 	
 	format : function() {
         if (nsPreferences.getIntPref(this.extensionPrefix + this.imageFormat) == 0) {
@@ -155,16 +150,13 @@ screengrab.prefs = {
 	observe : function(aSubject, aTopic, aData) {
 		if (aTopic != "nsPref:changed") return;
 		
-		ftst.logger.debug("Observed change in " + aData);
+		sg.debug("Observed change in " + aData);
 	    switch (aData) {
 	    	case this.showIconInStatusBar: 
 				this.refreshStatusbar();
 	        	break;
 	    	case this.showInContextMenu:
 				this.refreshContextMenu();
-	        	break;
-			case this.captureMethod:
-				this.refreshMenuChoices();
 	        	break;
 	    }
 		refreshShortcuts();
@@ -187,7 +179,7 @@ screengrab.prefs = {
 		try {
 			document.getElementById(elementId).style.display = "none";
 		} catch (error) {
-			ftst.logger.error(error + ":" + elementId);
+			sg.error(error + ":" + elementId);
 		}
 	},
 	
@@ -195,7 +187,7 @@ screengrab.prefs = {
 		try {
 			document.getElementById(elementId).style.display = "";
 		} catch (error) {
-			ftst.logger.error(error + ":" + elementId);
+			sg.error(error + ":" + elementId);
 		}
 	},
 	
@@ -217,3 +209,6 @@ screengrab.prefs = {
 		window.openDialog("chrome://screengrab/content/preferences.xul", "screengrab-options-dialog", "toolbar,centerscreen,chrome,modal,resizable" + this.instantApply() ? ",dialog=no" : "");
 	}
 }
+window.addEventListener("load", function() {
+    screengrab.prefs.configuratePrefs();
+}, false);

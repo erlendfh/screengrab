@@ -25,6 +25,7 @@
     <script type="application/x-javascript" src="chrome://screengrab/content/Action.js" />
     <script type="application/x-javascript" src="chrome://screengrab/content/Java.js" />
     <script type="application/x-javascript" src="chrome://screengrab/content/Grab.js" />
+	<script type="application/x-javascript" src="chrome://screengrab/content/Util.js" />
 	
 	<!-- stringbundle to localize strings in .js file -->
 	<!-- many thanks to Jean-Bernard Marcon for all the help -->
@@ -39,61 +40,47 @@
                        type="menu-button"
 	                   tooltiptext="Screengrab!"
 	                   label="Screengrab!">
-	        <menupopup id="screengrab-toolbar-menupopup">
-	            <menuitem id="pop-grabFrame" label="&screengrab.page;" 
-	                oncommand="sg.Grab(new sg.FrameTarget(), sg.CaptureViewPort, new sg.SaveAction());"/>
-	            <menuitem id="pop-grabViewPort" label="&screengrab.visible.portion.of.page;" 
-	                oncommand="sg.Grab(new sg.VisibleTarget(), sg.CaptureViewPort, new sg.SaveAction());"/>
-	            <menuitem id="pop-grabBrowser" label="&screengrab.selection;" 
-	                oncommand="sg.Grab(new sg.SelectionTarget(), sg.CaptureViewPort, new sg.SaveAction());"/>
-                <menuitem id="pop-grabBrowser" label="&screengrab.element;" 
-	                oncommand="sg.Grab(new sg.ElementTarget(), sg.CaptureViewPort, new sg.SaveAction());"/>
-                <menuitem id="pop-grabBrowser" label="&screengrab.browser.window;" 
-                    oncommand="sg.Grab(new sg.WindowTarget(), sg.CaptureWindow, new sg.SaveAction());"/>
-                <menuitem id="pop-grabBrowser" label="&screengrab.browser.window;" 
-                    oncommand="sg.Grab(new sg.VisibleTarget(), sg.CaptureViewPort, new sg.UploadScrnshotsAction());"/>
-	            <menuseparator/>
-	            <menuitem label="Preferences..." tooltiptext="Preferences..." oncommand="screengrab.prefs.openPrefs(); event.stopPropagation();"/>
-	      </menupopup>
+	        <menupopup id="screengrab-toolbar-menupopup"
+			           onpopupshowing="sg.Util.clonePopup(event, 'screengrab-menu-items', 'screengrab-toolbar-button')"
+			           onpopuphiding="sg.Util.clearPopup(event, 'screengrab-toolbar-button')">
+	        </menupopup>
 	    </toolbarbutton>
 	</toolbarpalette>
 	
 	<!-- Context menu additions -->
 	<popup id="contentAreaContextMenu">
-	    <menuseparator />
-	    <menu label="&screengrab.name;">
-	        <menupopup id="screengrab-context-items">
-	        	<menu id="screengrab-save" label="&screengrab.save;">
-	        		<menupopup>
+	    <menuseparator id="screengrab-context-separator"/>
+	    <menu id="screengrab-context-menu" label="&screengrab.name;">
+	        <menupopup id="screengrab-menu-items">
+		    	<menu id="screengrab-save" label="&screengrab.save;">
+		    		<menupopup>
 			            <menuitem id="pop-grabFrame" label="&screengrab.page;" 
 			                oncommand="sg.Grab(new sg.FrameTarget(), sg.CaptureViewPort, new sg.SaveAction());"/>
 			            <menuitem id="pop-grabViewPort" label="&screengrab.visible.portion.of.page;" 
 			                oncommand="sg.Grab(new sg.VisibleTarget(), sg.CaptureViewPort, new sg.SaveAction());"/>
-			            <menuitem id="pop-grabBrowser" label="&screengrab.selection;" 
+			            <menuitem id="pop-grabSelection" label="&screengrab.selection;" 
 			                oncommand="sg.Grab(new sg.SelectionTarget(), sg.CaptureViewPort, new sg.SaveAction());"/>
-		                <menuitem id="pop-grabBrowser" label="&screengrab.element;" 
-			                oncommand="sg.Grab(new sg.ElementTarget(), sg.CaptureViewPort, new sg.SaveAction());"/>
-                        <menuitem id="pop-grabBrowser" label="&screengrab.browser.window;" 
-                            oncommand="sg.Grab(new sg.WindowTarget(), sg.CaptureWindow, new sg.SaveAction());"/>
-                        <menuitem id="pop-grabBrowser" label="&screengrab.browser.window;" 
-                            oncommand="sg.Grab(new sg.VisibleTarget(), sg.CaptureViewPort, new sg.UploadScrnshotsAction());"/>
+		                <!--menuitem id="pop-grabElement" label="&screengrab.element;" 
+			                oncommand="sg.Grab(new sg.ElementTarget(), sg.CaptureViewPort, new sg.SaveAction());"/-->
+		                <menuitem id="pop-grabWindow" label="&screengrab.browser.window;" 
+		                    oncommand="sg.Grab(new sg.WindowTarget(), sg.CaptureWindow, new sg.SaveAction());"/>
 		            </menupopup>
-	            </menu>
-	            <menu id="screengrab-copy" label="&screengrab.copy;">
-	        		<menupopup>
+		        </menu>
+		        <menu id="screengrab-copy" label="&screengrab.copy;">
+		    		<menupopup>
 			            <menuitem id="pop-copyFrame" label="&screengrab.page;" 
 				                oncommand="sg.Grab(new sg.FrameTarget(), sg.CaptureViewPort, new sg.CopyAction());"/>
 			            <menuitem id="pop-copyViewPort" label="&screengrab.visible.portion.of.page;" 
 			                oncommand="sg.Grab(new sg.VisibleTarget(), sg.CaptureViewPort, new sg.CopyAction());"/>
-			            <menuitem id="pop-copyBrowser" label="&screengrab.selection;" 
-                            oncommand="sg.Grab(new sg.SelectionTarget(), sg.CaptureViewPort, new sg.CopyAction());"/>
-                        <menuitem id="pop-copyBrowser" label="&screengrab.element;" 
-                            oncommand="sg.Grab(new sg.ElementTarget(), sg.CaptureViewPort, new sg.CopyAction());"/>
-                        <menuitem id="pop-copyBrowser" label="&screengrab.browser.window;" 
-                            oncommand="sg.Grab(new sg.WindowTarget(), sg.CaptureWindow, new sg.CopyAction());"/>
-	        		</menupopup>
-	            </menu>
-	        </menupopup>
+			            <menuitem id="pop-copySelection" label="&screengrab.selection;" 
+		                    oncommand="sg.Grab(new sg.SelectionTarget(), sg.CaptureViewPort, new sg.CopyAction());"/>
+		                <!--<menuitem id="pop-copyElement" label="&screengrab.element;" 
+		                    oncommand="sg.Grab(new sg.ElementTarget(), sg.CaptureViewPort, new sg.CopyAction());"/>-->
+		                <menuitem id="pop-copyWindow" label="&screengrab.browser.window;" 
+		                    oncommand="sg.Grab(new sg.WindowTarget(), sg.CaptureWindow, new sg.CopyAction());"/>
+		    		</menupopup>
+		        </menu>
+		    </menupopup>
 	    </menu>
 	</popup>
 
@@ -105,24 +92,21 @@
 					    insertafter="statusbarpanel-progress"
 					    persist="collapsed"
 					    tooltiptext="Screengrab!">
-			<menupopup orient="horizontal" position="before_start">
-                <menuitem id="pop-grabBrowser" label="Custom..." 
-                    oncommand="sg.StagedGrab2()"/>
-                <menuitem id="pop-grabBrowser" label="Screengrab!..." 
-                    oncommand="window.open('chrome://screengrab/content/Screengrab.xul', 'screengrab', 'chrome,centerscreen,resizable');"/>
-				<menu id="screengrab-save" label="&screengrab.save;" tooltip="&screengrab.save;">
+			<menupopup orient="horizontal" position="before_start"
+			           onpopupshowing="sg.Util.clonePopup(event, 'screengrab-menu-items', 'screengrab_panel')"
+			           onpopuphiding="sg.Util.clearPopup(event, 'screengrab_panel')">
+			</menupopup>
+		</statusbarpanel>
+	</statusbar>
+</overlay>
+                <!--<menuitem id="pop-grabBrowser" label="Custom..." 
+                    oncommand="sg.StagedGrab2()"/>-->
+                <!--<menuitem id="pop-grabBrowser" label="Screengrab!..." 
+                    oncommand="window.open('chrome://screengrab/content/Screengrab.xul', 'screengrab', 'chrome,centerscreen,resizable');"/>-->
+				<!--<menu id="screengrab-save" label="&screengrab.save;" tooltip="&screengrab.save;">
 	        		<menupopup>
 		                <menuitem id="pop-grabBrowser" label="Custom..." 
 		                    oncommand="window.open('chrome://screengrab/content/TargetChoice.xul', 'aboutMyExtension', 'chrome,centerscreen');"/>
 		            </menupopup>
-	            </menu>
-			</menupopup>
-		    <vbox flex="1">
-	      		<scrollbox width="1" height="1">
-	        		<html:canvas id="screengrab_buffer_canvas" style="display: none"/>
-	      		</scrollbox>
-	    	</vbox>
-		</statusbarpanel>
-	</statusbar>
-</overlay>
+	            </menu>-->
 

@@ -9,7 +9,7 @@
 	<script type="application/x-javascript" src="chrome://screengrab/content/Header.js" />
     <script type="application/x-javascript" src="chrome://screengrab/content/Box.js" />
 	<script type="application/x-javascript" src="chrome://screengrab/content/Prefs.js" />
-    <script type="application/x-javascript" src="chrome://screengrab/content/AddToToolbar.js" />
+<!--    <script type="application/x-javascript" src="chrome://screengrab/content/AddToToolbar.js" />-->
 	<script type="application/x-javascript" src="chrome://screengrab/content/Log4js.js" />
 	<script type="application/x-javascript" src="chrome://screengrab/content/UndoSet.js" />
     <script type="application/x-javascript" src="chrome://screengrab/content/File.js" />
@@ -33,6 +33,7 @@
 	   <stringbundle id="screengrab-strings" src="chrome://screengrab/locale/screengrab.properties"/>
 	</stringbundleset>
 	
+<!--	
 	<toolbarpalette id="BrowserToolbarPalette">
 	    <toolbarbutton id="screengrab-toolbar-button"
 	                   class="toolbarbutton-1 chromeclass-toolbar-additional"
@@ -46,7 +47,7 @@
 	        </menupopup>
 	    </toolbarbutton>
 	</toolbarpalette>
-	
+-->	
 	<!-- Context menu additions -->
 	<popup id="contentAreaContextMenu">
 	    <menuseparator id="screengrab-context-separator"/>

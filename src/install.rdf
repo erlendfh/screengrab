@@ -4,7 +4,7 @@
 	<Description about="urn:mozilla:install-manifest">
 		<em:id>{02450954-cdd9-410f-b1da-db804e18c671}</em:id>
 		<em:name>Screen grab!</em:name>
-		<em:version>0.95</em:version>
+		<em:version>0.96</em:version>
 		<em:description>Saves a web-page as an image.</em:description>
 		<em:creator>Andy Mutton</em:creator>
 		
@@ -20,7 +20,7 @@
 			<Description>
 				<em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
 				<em:minVersion>2.0</em:minVersion>
-				<em:maxVersion>3.0.*</em:maxVersion>
+				<em:maxVersion>3.1b3</em:maxVersion>
 			</Description>
 		</em:targetApplication>
 	</Description>

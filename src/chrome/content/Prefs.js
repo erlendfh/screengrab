@@ -100,7 +100,7 @@ screengrab.prefs = {
 	 * them into position to capture them.
 	 */
 	javaScrollWaitTime : function() {
-		var defaultTime = 50;
+		var defaultTime = 100;
 		if (window.navigator.userAgent.toLowerCase().indexOf("mac") > -1) {
 			defaultTime = 400;
 		}

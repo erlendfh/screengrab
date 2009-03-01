@@ -50,11 +50,15 @@ screengrab.Box.prototype = {
 		return new screengrab.Box(this.x, this.y, this.width, this.height);
 	},
 	contains: function(other) {
-		if (this.x > other.x) return false;
-		if (this.y > other.y) return false;
-		if (this.width + this.x < other.x + other.width) return false;
-		if (this.height + this.y < other.y + other.height) return false;
-		return true;
+		sg.debug(other);
+		var leftOk = this.x <= other.x;
+		var topOk = this.y <= other.y;
+		sg.debug(this.x + this.width);
+		sg.debug(other.x + other.width);
+		var rightOk = (this.x + this.width) >= (other.x + other.width);
+		var bottomOk = this.y + this.height >= other.y + other.height;
+		sg.debug(leftOk + "," + topOk + "," + rightOk + "," + bottomOk);
+		return leftOk && topOk && rightOk && bottomOk;
 	},
 	offsetCopy: function(x, y) {
 		var copy = this.copy();

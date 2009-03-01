@@ -16,7 +16,8 @@
 	<property name="version" value="${RDF.Description.em:version}"/>
 	
 	<!-- Set this property to your Firefox profile directory -->
-	<property name="ff-profile-dir" location="/Users/andy/Library/Application Support/Firefox/Profiles/7jk3ofy3.dev" />
+	<!--property name="ff-profile-dir" location="/Users/andy/Library/Application Support/Firefox/Profiles/7jk3ofy3.dev" /-->
+	<property name="ff-profile-dir" location="/Users/andy/Library/Application Support/Firefox/Profiles/8q81q1ap.default" />
 	<property name="ff-app" location="/Applications/Firefox.app/Contents/MacOS/firefox" />
 	
 	<property name="extension-dir" location="${ff-profile-dir}/extensions" />
@@ -49,6 +50,9 @@
         <copy todir="${build}/components">
             <fileset dir="${src}/components" />
         </copy>
+        <copy todir="${build}/jars">
+            <fileset dir="${src}/jars" />
+        </copy>
   		<copy file="${src}/install.rdf" toDir="${build}"/>
   		<copy file="${src}/chrome.manifest"  toFile="${build}/chrome.manifest" />
   		
@@ -60,6 +64,7 @@
     	<!-- Create the distribution directory -->
     	<mkdir dir="${dist}"/>
   		<zip destfile="${dist}/${name}_v${version}.xpi">
+            <zipfileset dir="${build}/jars" includes="**/*" prefix="jars"/>
             <zipfileset dir="${build}/components" includes="**/*" prefix="components"/>
 	  		<zipfileset dir="${build}/chrome" includes="${name}.jar" prefix="chrome"/>
 	  		<zipfileset dir="${build}/defaults" includes="**/*" prefix="defaults"/>

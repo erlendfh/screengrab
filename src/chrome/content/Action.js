@@ -7,9 +7,10 @@ screengrab.Action.prototype = {
 screengrab.SaveAction = function() {}
 screengrab.SaveAction.prototype = {
 	doAction: function(canvas) {
-        var picker = new screengrab.ImageFilePicker("img12345.png", "Save as...", "image/png");
+		var msg = document.getElementById("screengrab-strings").getString("SaveAsMessage");
+        var picker = new screengrab.ImageFilePicker(screengrab.prefs.defaultFileName() + "." + screengrab.prefs.format(), msg, screengrab.prefs.formatMimeType());
         var file = picker.getFile();
-		var dataUrl = canvas.toDataURL(file.mimeType, "");
+		var dataUrl = canvas.toDataURL(file.mimeType, screengrab.prefs.formatQuality(file.mimeType));
         file.saveDataUrl(dataUrl, true);
 	}
 }

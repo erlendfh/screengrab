@@ -1,14 +1,19 @@
 
 screengrab.CaptureViewPort = function(browser, dimensions, onCaptured) {
-    var htmlDoc = browser.getDocument();
-    htmlDoc.setAllFlashOpaque();
-    var canvas = browser.getFilledCanvas(dimensions);
-    htmlDoc.undo();
-    
-    var embeddedCapture = new screengrab.EmbeddedCapture(htmlDoc, dimensions, canvas.getContext("2d"));
-    embeddedCapture.capture(function() {
+    if (sg.prefs.javaEnabled()) {
+	    var htmlDoc = browser.getDocument();
+	    var canvas = browser.getFilledCanvas(dimensions);
+	    var embeddedCapture = new screengrab.EmbeddedCapture(htmlDoc, dimensions, canvas.getContext("2d"));
+	    embeddedCapture.capture(function() {
+			onCaptured(canvas);
+	    }, browser);
+	} else {
+		var htmlDoc = browser.getDocument();
+	    htmlDoc.setAllFlashOpaque();
+	    var canvas = browser.getFilledCanvas(dimensions);
+	    htmlDoc.undo();
 		onCaptured(canvas);
-    }, browser);
+	}
 }
 
 screengrab.CaptureWindow = function(browser, dimensions, onCaptured) {

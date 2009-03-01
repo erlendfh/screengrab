@@ -17,7 +17,9 @@ screengrab.Document.prototype = {
     
 	getDimensionsOf : function(element) {
 		var box = element.ownerDocument.getBoxObjectFor(element);
-		return new screengrab.Box(box.x, box.y, box.width, box.height);
+		var sgBox = new screengrab.Box(box.x, box.y, box.width, box.height)
+		sg.debug(element + " " + sgBox);
+		return sgBox;
     },
     
     head : function() {
@@ -54,20 +56,24 @@ screengrab.Document.prototype = {
     },
     
     setAllFlashOpaque : function() {
-        var embedded = this.doc.getElementsByTagName("embed");
-        for (var i = 0; i < embedded.length; i++) {
-            var embed = embedded[i];
-            var orig = embed.getAttribute("wmode");
-            var parent = embed.parent;
-            embed.setAttribute("wmode", "opaque");
-            parent.removeChild(embed);
-            parent.appendChild(embed);
-            this.undos.push(function() {
-                embed.setAttribute("wmode", orig);
-                parent.removeChild(embed);
-                parent.appendChild(embed);
-            });
-        }
+		try {
+	        var embedded = this.doc.getElementsByTagName("embed");
+	        for (var i = 0; i < embedded.length; i++) {
+	            var embed = embedded[i];
+	            var orig = embed.getAttribute("wmode");
+	            var parent = embed.parentNode;
+	            embed.setAttribute("wmode", "opaque");
+	            parent.removeChild(embed);
+	            parent.appendChild(embed);
+	            this.undos.push(function() {
+	                embed.setAttribute("wmode", orig);
+	                parent.removeChild(embed);
+	                parent.appendChild(embed);
+	            });
+	        }
+		} catch (e) {
+			sg.error(e);
+		}
     },
 	
 	getAllEmbeddedDimensions : function() {

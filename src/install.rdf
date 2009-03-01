@@ -3,7 +3,7 @@
 <RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:em="http://www.mozilla.org/2004/em-rdf#">
 	<Description about="urn:mozilla:install-manifest">
 		<em:id>{02450954-cdd9-410f-b1da-db804e18c671}</em:id>
-		<em:name>Screen grab!</em:name>
+		<em:name>Screengrab</em:name>
 		<em:version>0.96</em:version>
 		<em:description>Saves a web-page as an image.</em:description>
 		<em:creator>Andy Mutton</em:creator>

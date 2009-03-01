@@ -38,20 +38,29 @@ screengrab.EmbeddedCapture.prototype = {
 		var captureBox = this.captureBox;
 		
 		var nextImage = function() {
-            sg.debug(regions.length);
+			sg.debug("Number of regions to grab " + regions.length);
             var element = regions.pop();
 			box.x = element.x;
 			box.y = element.y;
+			box.width = element.width;
+			box.height = element.height;
 			var visibleRegion = new screengrab.Box(win.scrollX, win.scrollY, viewportDimensions.width, viewportDimensions.height);
-			if (!visibleRegion.contains(box)) {
-	            // scroll to region, snap it and save it
-				win.scrollTo(box.x, box.y);
+			sg.debug("Visible " + visibleRegion + " To capture " + element);
+			var doJavaCopy = function() {
+	            var copy = element.offsetCopy(viewportDimensions.x - win.scrollX, viewportDimensions.y - win.scrollY);
+	            var dataUrl = screengrab.Java.capture(copy);
+	            sg.debug("Setting url");
+	            img.src = dataUrl;
 			}
 			
-            var copy = element.offsetCopy(viewportDimensions.x - win.scrollX, viewportDimensions.y - win.scrollY);
-            var dataUrl = screengrab.Java.capture(copy);
-            sg.debug("Setting url");
-            img.src = dataUrl;
+			if (!visibleRegion.contains(box)) {
+	            // scroll to region, snap it and save it
+				sg.debug("Scrolling to [" + box.x + "," + box.y + "]");
+				win.scrollTo(box.x, box.y);
+				setTimeout(doJavaCopy, sg.prefs.javaScrollWaitTime());
+			} else {
+				doJavaCopy();
+			}
         }
 		
 		img.onload = function() {

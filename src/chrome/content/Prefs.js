@@ -26,7 +26,7 @@ screengrab.prefs = {
 	
     includeTimeStampInFilename : "includeTimeStampInFilename",
     imageFormat : "imageFormat",
-	imageQuality : "imageQuality",
+	imageQuality : "jpgImageQuality",
 	enableLogging : "enableLogOutput",
 	numberofGrabsTaken : "numberOfGrabs",
 	showIconInStatusBar: "showIconInStatusBar",
@@ -54,13 +54,19 @@ screengrab.prefs = {
         }
     },
 	
-	formatQuality : function() {
-		var quality = nsPreferences.getIntPref(this.extensionPrefix + this.imageQuality);
-        if (quality == 0) {
-            return 65;
+	formatMimeType : function() {
+        if (nsPreferences.getIntPref(this.extensionPrefix + this.imageFormat) == 0) {
+            return "image/png";
         } else {
-            return quality;
+            return "image/jpeg";
         }
+    },
+	
+	formatQuality : function(mimeType) {
+		if (mimeType == "image/png") {
+			return "";
+		}
+		return 'quality=' + nsPreferences.getIntPref(this.extensionPrefix + this.imageQuality);
     },
 	
 	showFileInDownloads : function() {
@@ -85,6 +91,29 @@ screengrab.prefs = {
 		return nsPreferences.copyUnicharPref(this.extensionPrefix + this.loggerPref, defaultFileName);
 	},
 	
+	loggingEnabled : function() {
+		return nsPreferences.getBoolPref(this.extensionPrefix + this.enableLogging, false);
+	},
+	
+	/*
+	 * The time to wait for Java applets to get ready after scrolling 
+	 * them into position to capture them.
+	 */
+	javaScrollWaitTime : function() {
+		var defaultTime = 50;
+		if (window.navigator.userAgent.toLowerCase().indexOf("mac") > -1) {
+			defaultTime = 400;
+		}
+		return nsPreferences.getIntPref(this.extensionPrefix + "javaScrollWaitMs", defaultTime);
+	},
+	
+	javaEnabled : function() {
+		if (!window.navigator.javaEnabled()) {
+			return false;
+		}
+		return nsPreferences.getBoolPref(this.extensionPrefix + "useJavaIfAvailable");
+	},
+	
 	incGrabCount : function() {
 		var numTaken = nsPreferences.getIntPref(this.extensionPrefix + this.numberofGrabsTaken, 0);
 		nsPreferences.setIntPref(this.extensionPrefix + this.numberofGrabsTaken, numTaken + 1);
@@ -107,7 +136,7 @@ screengrab.prefs = {
     },
 	
 	refreshContextMenu : function() {
-		if (nsPreferences.getBoolPref(this.extensionPrefix + this.showInContextMenu)) {
+		if (nsPreferences.getBoolPref(this.extensionPrefix + this.showInContextMenu, true)) {
 			this.show("screengrab-context-menu");
 			this.show("screengrab-context-separator");
 		} else {
@@ -117,20 +146,18 @@ screengrab.prefs = {
 	},
 	
 	refreshMenuChoices : function() {
-		if (this.useJava()) {
-			this.hide("screengrab-status-copy");
-			this.hide("screengrab-context-copy");
+		if (!this.javaEnabled()) {
+			this.hide("pop-grabWindow");
 		} else {
-			this.show("screengrab-status-copy");
-			this.show("screengrab-context-copy");
+			this.show("pop-grabWindow");
 		}
 	},
-	
+
 	refreshShortcuts : function() {
-		setShortcut("screengrab-key-copy-complete", "c", "control shift");
-        setShortcut("screengrab-key-copy-visible", "v", "control shift");
-        setShortcut("screengrab-key-save-complete", "d", "control shift");
-        setShortcut("screengrab-key-save-visible", "f", "control shift");
+//		setShortcut("screengrab-key-copy-complete", "c", "control shift");
+//        setShortcut("screengrab-key-copy-visible", "v", "control shift");
+//        setShortcut("screengrab-key-save-complete", "d", "control shift");
+//        setShortcut("screengrab-key-save-visible", "f", "control shift");
     },
 	
 	setShortcut : function(id, key, modifiers) {
@@ -140,7 +167,7 @@ screengrab.prefs = {
 	},
 	
 	refreshStatusbar : function() {
-		if (nsPreferences.getBoolPref(this.extensionPrefix + this.showIconInStatusBar)) {
+		if (nsPreferences.getBoolPref(this.extensionPrefix + this.showIconInStatusBar), true) {
 			this.show("screengrab_panel");
 		} else {
 			this.hide("screengrab_panel");

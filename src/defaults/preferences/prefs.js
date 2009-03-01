@@ -5,4 +5,5 @@ pref("extensions.screengrab.useJavaIfAvailable", true);
 pref("extensions.screengrab.showIconInStatusBar", true);
 pref("extensions.screengrab.showInContextMenu", true);
 pref("extensions.screengrab.jpgImageQuality", 75);
+pref("extensions.screengrab.enableLogOutput", false);
 //pref("extensions.screengrab.javaScrollWaitMs", 10); // defaults (mac:400, win,lin:40)

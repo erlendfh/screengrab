@@ -15,6 +15,24 @@ screengrab.SaveAction.prototype = {
 	}
 }
 
+screengrab.SaveToFileAction = function(filename, mimetype, quality) {
+	this.filename = filename;
+	this.mimetype = mimetype;
+	this.quality = quality;
+}
+
+screengrab.SaveToFileAction.prototype = {
+	doAction: function(canvas) {
+		var nsfile = Components.classes["@mozilla.org/file/local;1"].
+		            createInstance(Components.interfaces.nsILocalFile);
+		nsfile.initWithPath(this.filename);
+
+		var file = new screengrab.File(nsfile, this.mimetype);
+		var dataUrl = canvas.toDataURL(file.mimeType, this.quality);
+    file.saveDataUrl(dataUrl, true);
+	}
+}
+
 screengrab.CopyAction = function() {}
 screengrab.CopyAction.prototype = {
 	doAction: function(canvas) {
